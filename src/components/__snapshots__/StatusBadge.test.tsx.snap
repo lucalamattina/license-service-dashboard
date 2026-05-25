@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`StatusBadge > renders active status 1`] = `
+<span
+  class="inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium capitalize ring-1 ring-inset bg-green-100 text-green-800 ring-green-600/20"
+>
+  active
+</span>
+`;
+
+exports[`StatusBadge > renders expired status 1`] = `
+<span
+  class="inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium capitalize ring-1 ring-inset bg-gray-100 text-gray-700 ring-gray-500/20"
+>
+  expired
+</span>
+`;
+
+exports[`StatusBadge > renders revoked status 1`] = `
+<span
+  class="inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium capitalize ring-1 ring-inset bg-red-100 text-red-800 ring-red-600/20"
+>
+  revoked
+</span>
+`;

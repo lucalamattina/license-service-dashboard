@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 import { licenses, products, users } from '../api/fixtures';
 
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = 'http://localhost:3000';
 
 export const handlers = [
   http.get(`${BASE_URL}/licenses`, () =>

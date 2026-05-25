@@ -4,7 +4,7 @@ import { server } from '../test/setup';
 import { apiFetch } from './client';
 import { ApiError } from './types';
 
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = 'http://localhost:3000';
 
 describe('apiFetch', () => {
   it('returns the parsed body on 2xx', async () => {

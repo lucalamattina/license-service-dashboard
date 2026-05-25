@@ -6,7 +6,7 @@ A React + TypeScript admin dashboard for the [license-service](https://github.co
 
 ## Run locally
 
-Requires the `license-service` backend running locally (default http://localhost:8080).
+Requires the `license-service` backend running locally (default http://localhost:3000).
 
 ```bash
 cp .env.example .env

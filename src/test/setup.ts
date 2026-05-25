@@ -3,7 +3,7 @@ import { afterAll, afterEach, beforeAll, vi } from 'vitest';
 import { setupServer } from 'msw/node';
 import { handlers } from './msw-handlers';
 
-vi.stubEnv('VITE_API_URL', 'http://localhost:8080');
+vi.stubEnv('VITE_API_URL', 'http://localhost:3000');
 
 export const server = setupServer(...handlers);
 
