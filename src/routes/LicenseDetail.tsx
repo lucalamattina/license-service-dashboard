@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useLicense } from '../hooks/useLicense';
 import { useUser } from '../hooks/useUser';
@@ -5,10 +6,13 @@ import { useProduct } from '../hooks/useProduct';
 import { StatusBadge } from '../components/StatusBadge';
 import { LoadingState } from '../components/LoadingState';
 import { ErrorState } from '../components/ErrorState';
+import { RevokeLicenseModal } from '../components/RevokeLicenseModal';
 import { formatDate } from '../lib/format';
 
 export default function LicenseDetail() {
   const { id } = useParams<{ id: string }>();
+  const [revokeOpen, setRevokeOpen] = useState(false);
+
   const licenseQuery = useLicense(id);
   const userQuery = useUser(licenseQuery.data?.user_id);
   const productQuery = useProduct(licenseQuery.data?.product_id);
@@ -100,6 +104,7 @@ export default function LicenseDetail() {
         <button
           type="button"
           disabled={!isRevocable}
+          onClick={() => setRevokeOpen(true)}
           className="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-400"
         >
           Revoke license
@@ -110,6 +115,14 @@ export default function LicenseDetail() {
           </p>
         )}
       </div>
+
+      <RevokeLicenseModal
+        license={license}
+        user={userQuery.data}
+        product={productQuery.data}
+        open={revokeOpen}
+        onOpenChange={setRevokeOpen}
+      />
     </div>
   );
 }

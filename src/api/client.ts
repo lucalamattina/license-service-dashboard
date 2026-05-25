@@ -11,12 +11,17 @@ export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> 
     });
   }
 
+  const hasBody = init?.body !== undefined && init?.body !== null;
+  const defaultHeaders: Record<string, string> = hasBody
+    ? { 'Content-Type': 'application/json' }
+    : {};
+
   let response: Response;
   try {
     response = await fetch(`${baseUrl}${path}`, {
       ...init,
       headers: {
-        'Content-Type': 'application/json',
+        ...defaultHeaders,
         ...(init?.headers ?? {}),
       },
     });
