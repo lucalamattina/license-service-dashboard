@@ -25,3 +25,5 @@ dist-ssr
 CONTEXT.md
 PLAN.md
 .claude
+.vercel
+.env*

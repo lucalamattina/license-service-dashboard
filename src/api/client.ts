@@ -2,14 +2,17 @@ import { ApiError } from './types';
 import type { ApiErrorBody } from './types';
 
 export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
-  const baseUrl = import.meta.env.VITE_API_URL as string | undefined;
-  if (!baseUrl) {
+  const rawBaseUrl = import.meta.env.VITE_API_URL as string | undefined;
+  if (!rawBaseUrl) {
     throw new ApiError({
       code: 'config_error',
       message: 'VITE_API_URL is not set',
       status: 0,
     });
   }
+  // Normalise trailing slashes so `${baseUrl}${path}` never produces a
+  // double-slash URL when path starts with '/'.
+  const baseUrl = rawBaseUrl.replace(/\/+$/, '');
 
   const hasBody = init?.body !== undefined && init?.body !== null;
   const defaultHeaders: Record<string, string> = hasBody
